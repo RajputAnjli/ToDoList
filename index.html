@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;1,800&display=swap" rel="stylesheet">
+ 
+ <style>
+ 
+  
+ /*  set static width  */  
+
+ * {
+  box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  cursor: pointer;
+  position:relative   ;
+  padding: 12px 8px 12px 40px;
+  list-style: none;
+  background:#4B361A;
+  font-size: 18px;
+  transition: 0.2s;
+  user-select: none;
+  border-radius:20px;
+  margin-top:3px;
+  color:white;
+   transition:all .3s;
+  transform-style: preserve-3d;
+ 
+    }
+
+/*  list odd no. (1,3,5,7...) background color set  */ 
+
+ul li:nth-child(odd) {
+  background: #4B361A;
+}
+
+ ul li:hover {
+   background:blue;
+   opacity:0.8;
+   
+   }
+ 
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+  animation:fading .9s;
+  
+  }
+
+@keyframes fading
+{0%{opacity:0}
+100%{opacity:1}}
+
+
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+/*  close button degining   */ 
+
+.close {
+ 
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0px 16px 0px 16px;
+  font-size:39px;
+  border-radius:15px;
+  
+  }
+
+/* list left animate*/
+
+.leftanimate1
+{
+  animation:animatezoom 1s;
+}
+
+ 
+@keyframes animatezoom{
+ from{transform:scale(0)}
+ to{transform:scale(1)}}  
+
+.close:hover {
+  background-color:#6e5f38;
+  color: white;
+  }
+
+  /*  input text degining  */ 
+ 
+#myInput {
+   margin-top:15px;
+   border: none;
+   width: 75%;
+   padding: 10px;
+   font-size: 16px;
+   border-radius:20px; 
+   outline:none; 
+   user-select:none;
+   }
+
+#myInput:hover
+{
+ padding: 8px;
+ border:2px solid black;
+}
+
+/*  button degining   */
+ .addBtn {
+  margin-top:15px;
+  padding: 0px;
+  border:1px solid black;
+  user-select:none;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float:right;
+  text-align: center;
+  font-size: 35px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius:20px;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+  
+/*here is top menu declare */
+
+#menu{
+  position:absolute;
+  text-align:left;
+  font-size:26px;
+  user-select:none;
+  cursor:pointer;
+  margin-top:-7px;
+  margin-left:-8px;
+  padding-left:6px;
+  padding-right:7px;
+  padding-bottom:2px;
+  font-style:bold;
+  color:white;
+  background-color:black;
+  border-radius:5px;
+ }
+ 
+ #menu:hover{
+ 
+ }
+ 
+/* To do list heading  */
+
+ #heading{
+    user-select:none;
+    text-align:center;
+    margin-top:35px;
+    color:white;
+    font-size:40px;
+    font-family: 'Exo', sans-serif;
+    text-shadow:5px 5px 20px black,5px 5px 20px red;
+ }
+ 
+/*  menu paragraph in div parent menuLabel   */
+
+div p
+  {
+    margin:0px;
+    text-align:center;
+    padding:7px;
+    color:black;
+    display:block;
+    cursor:pointer;
+    background-color:white;
+  } 
+
+/*
+#p1,#p2
+{
+border-bottom:1px solid black;
+ 
+}
+*/
+
+div p:hover
+  {
+  border-radius:5px;
+  background-color:#ddd;
+  color:black;
+  font-style:bold;
+  } 
+
+/*  menuLabel declare here */
+#menuLabel
+  {
+    position:absolute;
+    width:150px;
+    margin-left:-168px;
+    margin-top:-8px;
+    border:3px solid white; 
+    transition:all .9s;
+    z-index:1;
+    user-select:none;   
+  }
+
+/*  containerMenu  */
+
+.containerMenu:hover #menuLabel{
+    transition:all .9s;
+    margin-left:-7px;
+    background-color:white;
+  }
+   
+  
+.popUpBigClass> h1{
+   color:black;
+   text-shadow:1px 1px white; 
+ }
+ 
+.popUpBigClass > span
+{
+  font-size:50px;
+  top:-14px;
+  right:3px;
+  position:absolute;
+  color:white;
+  text-shadow:0.50px 0.50px white;
+  border:-1px solid white;
+  border-radius:10px;
+  user-select:none;
+  cursor:pointer;
+
+}
+
+.popUpBigClass{
+	position:absolute;
+	z-index:1;
+	border:1px solid white;
+	padding:20px;
+	padding-top:0px;
+	background-color:whit;
+	border-radius:20px;
+	background-color:orange;
+	margin-left:-6px;
+	user-select:none;
+    display:none;
+
+}
+
+.tabLinks, .customizeBtn, .refreshBtn{
+   outline:none;
+   border:none;
+   padding:10px;
+   width:100px;
+   text-align:center;
+   margin:0px;
+   border-radius:10px;
+ }
+
+.customizeBtn, .refreshBtn{
+  padding:10px;
+  margin-top:10px;
+  margin-left:5px;
+}
+
+.ColorBox{
+  position:absolute;
+  visibility:hidden;
+  margin-top:240px;
+  margin-left:30px;
+
+}
+
+.imageUrl{
+  outline:none;
+  border:none;
+  border-bottom:1px solid black;
+}
+
+.tabLinks:hover, .customizeBtn:hover, .refreshBtn:hover
+{
+  background-color:#ccc;
+  border:1px solid black;
+  padding:9px;
+}
+
+.popUpContainer{
+  margin-top:5px;
+  padding:20px;
+  background-color:white;
+  display:inline-block;
+  width:auto;
+  border-radius:10px;
+  display:none;
+}
+  
+.contentColor ,.contentGradient, .contentImage
+{
+
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  display: inline-block;
+  user-select:none;
+ 
+}
+
+.contentColor:hover, .contentGradient:hover, .contentImage:hover{
+  border:5px solid black;
+  cursor:pointer;
+}
+ 
+</style>
+</head>
+<body>
+
+
+ 
+   <div class="containerMenu">
+   <span id="menu">	&#9776;</span>
+   <div id="menuLabel">
+   <p id="p1" onclick="displayTheme()"><i class="fa fa-adjust" style="font-size:20px;"></i> Theme Color</p>
+    <!--
+    <p id="p2"></p>
+    <p id="p3"></p> -->
+
+    </div>   
+   </div>
+   
+   </br>
+        
+   <h2 id="heading">My To Do List</h2>
+   <div class="myDiv">
+   <input type="text" id="myInput" placeholder="Title...">
+   <span onclick="newElement()" class="addBtn" id="clickBtn">+</span>
+   </div></br>
+   
+<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->   
+<!--create importnen list-->
+   
+  <div class="popUpBigClass" id="finish">
+  <h1>Pick Theme </h1>
+  <span class="closeTheme" id="deleteTheme" onclick="deleteTheme()" title="delete theme">&#215</span>
+  <div id="tabs">
+  <button class="tabLinks" onclick="openTag('Color')">Color</button>
+  <button class="tabLinks" onclick="openTag('Gradient')" >Gradient</button>
+  <button class="tabLinks" onclick="openTag('Image')">Image</button>
+  
+  </div>
+
+<!-- this is a color list theme chooiser-->
+
+  <div class="popUpContainer" id="Color">
+     <div class="contentColor" onclick="setbgColor(1)" id="1">
+       <label id="colorOne" ></label>
+      </div>
+	  <div class="contentColor" onclick="setbgColor(2)" id="2">
+       <label id="colorTwo"></label>
+      </div>
+	  <div class="contentColor" onclick="setbgColor(3)" id="3">
+       <label id="colorThree"></label>
+      </div>
+	  <div class="contentColor" onclick="setbgColor(4)" id="4">
+       <label id="colorFour"></label>
+      </div>
+       <div class="contentColor" onclick="setbgColor(5)" id="5">
+       <label id="colorFive"></label>
+      </div>
+	  <div class="contentColor" onclick="setbgColor(6)" id="6">
+       <label id="colorSix"></label>
+      </div>
+	  <div class="contentColor" onclick="setbgColor(7)"id="7">
+       <label id="colorSeven"></label>
+      </div>
+	  <div class="contentColor" onclick="setbgColor(8)" id="8">
+       <label id="colorEight"></label>
+      </div>
+	  <div class="contentColor" onclick="setbgColor(9)"id="9">
+       <label id="colornine"></label>
+      </div>
+       <div class="contentColor" onclick="setbgColor(10)" id="10">
+       <label id="colorTen"></label>
+      </div>
+	  <button class="refreshBtn" id="1" onclick="createDynamicColor()">Refresh</button>
+	  <button class="customizeBtn" id="3" onclick="customizeColor()">Customize</button>
+	  <input type="color" class="ColorBox" id="box1" oninput="Colorbox1()">
+	  
+  </div>  
+  
+ <!-- this gradient color theme chooicer-->
+
+<div class="popUpContainer" id="Gradient">
+     <div class="contentGradient" onclick="setbgGradient(1)" id="1">
+       <label id="colorOne" ></label>
+      </div>
+	  <div class="contentGradient" onclick="setbgGradient(2)" id="2">
+       <label id="colorTwo"></label>
+      </div>
+	  <div class="contentGradient" onclick="setbgGradient(3)" id="3">
+       <label id="colorThree"></label>
+      </div>
+	  <div class="contentGradient" onclick="setbgGradient(4)" id="4">
+       <label id="colorFour"></label>
+      </div>
+       <div class="contentGradient" onclick="setbgGradient(5)" id="5">
+       <label id="colorFive"></label>
+      </div>
+	  <div class="contentGradient" onclick="setbgGradient(6)" id="6">
+       <label id="colorSix"></label>
+      </div>
+	  <div class="contentGradient" onclick="setbgGradient(7)"id="7">
+       <label id="colorSeven"></label>
+      </div>
+	  <div class="contentGradient" onclick="setbgGradient(8)" id="8">
+       <label id="colorEight"></label>
+      </div>
+	  <div class="contentGradient" onclick="setbgGradient(9)"id="9">
+       <label id="colornine"></label>
+      </div>
+       <div class="contentGradient" onclick="setbgGradient(10)" id="10">
+       <label id="colorTen"></label>
+      </div>
+	  <button class="refreshBtn" id="2" onclick="createDynamicGradient()">Refresh</button>
+	   <button class="customizeBtn" id="customizeBtn-2" onclick="openTag('setGrdient')">Customize</button>
+  </div>  
+
+
+<!-- this image theme chooicer-->
+
+<div class="popUpContainer" id="Image">
+     <div class="contentImage" onclick="setbgImage(1)" id="1">
+       <label id="colorOne" ></label>
+      </div>
+	  <div class="contentImage" onclick="setbgImage(2)" id="2">
+       <label id="colorTwo"></label>
+      </div>
+	  <div class="contentImage" onclick="setbgImage(3)" id="3">
+       <label id="colorThree"></label>
+      </div>
+	  <div class="contentImage" onclick="setbgImage(4)" id="4">
+       <label id="colorFour"></label>
+      </div>
+       <div class="contentImage" onclick="setbgImage(5)" id="5">
+       <label id="colorFive"></label>
+      </div>
+	  <div class="contentImage" onclick="setbgImage(6)" id="6">
+       <label id="colorSix"></label>
+      </div>
+	  <div class="contentImage" onclick="setbgImage(7)"id="7">
+       <label id="colorSeven"></label>
+      </div>
+	  <div class="contentImage" onclick="setbgImage(8)" id="8">
+       <label id="colorEight"></label>
+      </div>
+	  <div class="contentImage" onclick="setbgImage(9)"id="9">
+       <label id="colornine"></label>
+      </div>
+       <div class="contentImage" onclick="setbgImage(10)" id="10">
+       <label id="colorTen"></label>
+      </div>
+	   
+	  <button class="customizeBtn" id="customizeBtn-3" onclick="openTag('setImage')">Customize</button>
+  </div>    
+  
+  <!-- Customize theme Gradient choicer  -->
+  
+    <div class="popUpContainer" id="setGrdient">
+	      <h2 style="margin:0px;padding:8px; margin-top:-10px">Set Gradient Color :)</h2>
+    	  <button class="customizeBtn" id="2" onclick="customizeGradient1()">Color-1</button>
+		  <input type="color" class="ColorBox" id="box2" oninput="Colorbox2()">
+          <button class="customizeBtn" id="2" onclick="customizeGradient2()">Color-2</button>
+		 <input type="color" class="ColorBox" id="box3" oninput="Colorbox3()">
+
+    </div>
+	
+  <!-- Customize theme Image set url  -->
+	
+	<div class="popUpContainer" id="setImage">
+    
+	<input type="" placeholder="Enter img url..." class="imageUrl" id="ImageUrl">
+   	<button class="customizeBtn" id="setUrl" onclick="setUrlFunction()">Set Url</button>
+
+    </div>
+  
+  </div>
+   
+<!--this is un-order list--> 
+ 
+<ul id="myUL"></ul>
+<ul id="importentUL"></ul>
+
+ 
+<script>
+
+
+/* set default background */
+
+function setDefaultBackgroundColor()
+{
+
+//document.body.style.background="linear-gradient(to right,"+"#eb09cd,"+"#6e0af2"+")"; //gradient color background
+document.body.style.background="url('https://cdn.pixabay.com/photo/2015/07/02/10/13/sky-828648_960_720.jpg')"; //image background
+
+}
+setDefaultBackgroundColor();
+
+/* set image url in background */
+
+function setUrlFunction()
+{
+var x=document.getElementById("ImageUrl").value;
+if(x==='')
+{
+alert("Opps, Something is wrong");
+} 
+else{
+document.body.style.background="url("+x+")";
+}
+document.getElementById("ImageUrl").value='';
+}
+
+/* set background color from colorBox appear*/
+
+
+function Colorbox1()
+{
+var id=document.getElementById("box1");
+ document.body.style.background=id.value;
+
+}
+
+var c1="#eb09cd",c2="#6e0af2";
+function Colorbox2()
+{
+var id=document.getElementById("box2");
+c1=id.value;
+ document.body.style.background="linear-gradient(to right,"+c1+","+c2+")";
+
+
+}
+function Colorbox3()
+{
+var id=document.getElementById("box3");
+c2=id.value;
+document.body.style.background="linear-gradient(to right,"+c1+","+c2+")";
+
+}
+ 
+/* display custom color box */
+
+function customizeColor()
+{
+document.getElementById("box1").click();
+}
+
+function customizeGradient1()
+{
+document.getElementById("box2").click();
+}
+
+function customizeGradient2()
+{
+document.getElementById("box3").click();
+}
+
+/* display theme click on theme change element*/ 
+
+function displayTheme()
+{
+document.getElementById("finish").style.display="block";
+
+}
+
+/* disappear theme click on close theme button*/
+
+ function deleteTheme()
+ {
+ document.getElementById("finish").style.display="none";
+ 
+ }
+
+
+/*  default display the color tag in theme*/
+
+var popUpContainer=document.getElementsByClassName("popUpContainer");
+popUpContainer[0].style.display="block";
+
+/* hide div for tags */
+
+function openTag(tagNameId)
+{
+var i;
+var popUpContainer=document.getElementsByClassName("popUpContainer");
+
+for(i=0;i<popUpContainer.length;i++)
+{
+popUpContainer[i].style.display="none";
+}
+
+document.getElementById(tagNameId).style.display="block";
+
+}
+
+ /* Create Dynamic color , Gradient and also images */
+
+var i;
+var value;
+var arrColor=[]; 
+var arrGradient=[]; 
+var arrCustomize=[];
+
+/*  images url set in array */
+
+var arrImage=[
+"https://cdn.pixabay.com/photo/2016/01/08/11/57/butterfly-1127666_960_720.jpg",
+"https://cdn.pixabay.com/photo/2016/08/09/21/54/yellowstone-national-park-1581879_960_720.jpg",
+"https://cdn.pixabay.com/photo/2016/02/13/12/26/aurora-1197753_960_720.jpg",
+"https://cdn.pixabay.com/photo/2017/05/31/18/38/sea-2361247_960_720.jpg",
+"https://cdn.pixabay.com/photo/2018/08/23/07/35/thunderstorm-3625405_960_720.jpg",
+"https://cdn.pixabay.com/photo/2016/11/14/04/36/boy-1822614_960_720.jpg",
+"https://cdn.pixabay.com/photo/2016/08/14/17/04/nature-1593406_960_720.jpg",
+"https://cdn.pixabay.com/photo/2017/08/12/17/11/nature-2634729_960_720.jpg",
+"https://cdn.pixabay.com/photo/2015/07/02/10/13/sky-828648_960_720.jpg",
+"https://cdn.pixabay.com/photo/2013/04/04/12/34/mountains-100367_960_720.jpg"
+]; 
+
+/* Dynamic Color creation */
+
+function createDynamicColor()
+{
+ 
+var color; 
+var contentColor=document.getElementsByClassName("contentColor");
+for(i=0; i<contentColor.length;i++)
+{
+color=Math.floor(Math.random()*16777215).toString(16);
+contentColor[i].style.background="#"+color;
+arrColor[i]="#"+color;
+}
+
+}
+
+/* Dynamic Gradient creation */
+
+function createDynamicGradient()
+{
+var color1;
+var color2;
+var contentGradient=document.getElementsByClassName("contentGradient");
+for(i=0; i<contentGradient.length;i++)
+{
+color1=Math.floor(Math.random()*16777215).toString(16);
+color2=Math.floor(Math.random()*16777215).toString(16);
+contentGradient[i].style.background="linear-gradient(to right, " 
+					         + "#"+color1+ ", " 
+					         + "#"+color2+")"; 
+							 
+arrGradient[i]="linear-gradient(to right, " 
+					         + "#"+color1+ ", " 
+					         + "#"+color2+")";							 
+							 
+}
+
+}
+
+/* Dynamic Image creation */
+
+function createDynamicImage()
+{
+var contentImage=document.getElementsByClassName("contentImage");
+for(i=0; i<contentImage.length;i++)
+{
+ 
+contentImage[i].style.background="url("+arrImage[i]+")";
+}
+
+}
+
+/* set background-color */
+
+function setbgColor(value)
+{
+document.body.style.background="";
+document.body.style.background=arrColor[value-1];
+
+}
+
+/* set background-Gradient */
+
+function setbgGradient(value)
+{
+document.body.style.background="";
+document.body.style.background=arrGradient[value-1];
+
+}
+
+/* set background-Image */
+
+function setbgImage(value)
+{
+document.body.style.background="";
+document.body.style.background="url("+arrImage[value-1]+")";
+document.body.classList.add("dynamicBodyTag");
+
+}
+
+ /*  call the functions for appear color in div theme */
+ 
+ createDynamicColor();
+ createDynamicGradient();
+ createDynamicImage();
+
+ /* Make a ENTER shortcut key to execute addBtn id automatically */
+ 
+ var input = document.getElementById("myInput");
+ input.addEventListener("keyup", function(event) {
+ if (event.keyCode === 13) {
+       document.getElementById("clickBtn").click();
+    }
+});
+ 
+ 
+ /* set checked list or not */
+
+ var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+	
+	/* create audio object and set audio on checked list */
+	
+	var audio = new Audio( 
+   'http://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a'); 
+			audio.play(); 
+  }
+  
+}, false);
+
+
+/* create dynamic list and elements*/
+
+ function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+   li.innerHTML=inputValue;
+   li.className="leftanimate1";
+   
+  
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+  
+  /* create audio object and set audio on list*/
+  
+    var audio = new Audio('http://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3');
+	audio.play();
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  span.innerHTML="\u00D7";
+  span.className = "close";
+  li.appendChild(span);
+  
+  /* create audio object and set audio on close button*/
+  
+var audio = new Audio( 
+   'http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/alien_shoot.wav'); 
+
+
+/* delete list when we click on cross button in list  */
+			
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++)
+  {
+      close[i].onclick = function() {
+	  
+	  audio.play();
+      var div = this.parentElement;
+	  div.style.display="none";
+          }
+	}
+  
+}
+
+</script>
+</body>
+</html>
